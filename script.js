@@ -1,4 +1,4 @@
-//Made by Mohammad Kherfan, HosharProductions
+//Made by Mohammad Kherfan, HosharProductions, (hopefully)
 //For questions, email mdkhaireden@gmail.com
 
 let
@@ -17,14 +17,17 @@ let
 	score,
 	highScore,
 	keyFlag,
-	jitter;
+	jitter,
+	redSpeed;
 
 function setup() {
 	createCanvas(windowWidth - 20, windowHeight - 80);
 	background(0);
 	middle = width / 2;
 	//
-	jitter = 5;
+	jitter = 7;
+	//
+	redSpeed = 5;
 	//
 	gameStatus = 0;
 
@@ -80,10 +83,17 @@ function draw() {
 		rect(15, blueY, 10, 70); //blue player, human
 
 		stroke(255, 0, 0); //adjusts the outline to red
-		fill(255, 0, 0);
-		rect(width - 30, 0, 50, height); //red wall
+
+		rect(width - 30, 0, 10, height); //red wall
 
 		//MOVEMENT
+		//red movement
+		if (ballY > redY + 35) {
+			redY += redSpeed;
+		}
+		if (ballY < redY + 35) {
+			redY -= redSpeed;
+		}
 		//
 		if (keyIsPressed && keyCode === 38) {
 			blueY -= 10;
